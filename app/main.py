@@ -5,6 +5,13 @@ from app.model_utils import load_all_models, preprocess_dicom, predict_all_model
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],       # or ["https://your-react-app.domain"]
+    allow_methods=["*"],       # GET, POST, PUT, etc.
+    allow_headers=["*"],       # Authorization, Content-Type, etc.
+)
+
 models_dict = load_all_models()
 
 
