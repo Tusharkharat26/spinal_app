@@ -2,8 +2,17 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from app.model_utils import load_all_models, preprocess_dicom, predict_all_models
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or use ["http://localhost:3000"] for more control
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    max_age=3600,
+)
 
 models_dict = load_all_models()
 

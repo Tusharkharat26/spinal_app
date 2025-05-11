@@ -14,14 +14,6 @@ from fastapi import FastAPI
 app = FastAPI()
 # Device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Or use ["http://localhost:3000"] for more control
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-    max_age=3600,
-)
 
 # Label map
 label_map = {"Normal/Mild": 0, "Moderate": 1, "Severe": 2}
